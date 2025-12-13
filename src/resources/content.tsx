@@ -1,21 +1,30 @@
-import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
+import {
+  About,
+  Blog,
+  Gallery,
+  Home,
+  Newsletter,
+  Person,
+  Social,
+  Work,
+} from "@/types";
 import { Line, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
-  firstName: "Selene",
-  lastName: "Yu",
-  name: `Selene Yu`,
-  role: "Design Engineer",
-  avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  firstName: "Marwen",
+  lastName: "Ayari",
+  name: `Marwen Ayari`,
+  role: "Entrepreneur, Senior Lead Developer",
+  avatar: "/images/avatar.png",
+  email: "marwenayarimail@gmail.com",
+  location: "Africa/Tunis", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  languages: ["English", "Arabic", "French"], // optional: Leave the array empty if you don't want to display languages
 };
 
 const newsletter: Newsletter = {
   display: true,
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
-  description: <>My weekly newsletter about creativity and engineering</>,
+  description: <>My newsletter about software development and innovation</>,
 };
 
 const social: Social = [
@@ -60,24 +69,28 @@ const home: Home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  headline: <>Building innovative software solutions </>,
   featured: {
     display: true,
     title: (
       <Row gap="12" vertical="center">
-        <strong className="ml-4">Once UI</strong>{" "}
+        <strong className="ml-4">Les Avoureux</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
           Featured work
         </Text>
       </Row>
     ),
-    href: "/work/building-once-ui-a-customizable-design-system",
+    href: "/work/les-avoureux-recipe-website",
   },
   subline: (
     <>
-    I'm Selene, a design engineer at <Text as="span" size="xl" weight="strong">ONCE UI</Text>, where I craft intuitive <br /> user experiences. After hours, I build my own projects.
-</>
+      I'm Marwen, a dynamic and innovative software development professional
+      with over 9 years of diverse experience, seeking to leverage my expertise
+      in leading development teams and delivering high-quality software
+      solutions. Currently Senior Engineer at Salla E-Commerce Platform and
+      working in parallel as freelancer at my own Marven.
+    </>
   ),
 };
 
@@ -102,9 +115,10 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        Marwen is a Tunis-based entrepreneur and senior lead developer with over
+        9 years of diverse experience in software development. He excels in
+        leading development teams, delivering high-quality solutions, and
+        creating innovative digital products across mobile and web platforms.
       </>
     ),
   },
@@ -113,41 +127,87 @@ const about: About = {
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "Salla E-Commerce Platform",
+        timeframe: "August 2024 - Present",
+        role: "Senior Fullstack Engineer",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Working full-time on the famous Salla E-Commerce Platform using
+            Next.js + TypeScript, Vue.js + JavaScript, and Ruby on Rails.
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            Design and develop compelling and reusable component-based user
+            interfaces, develop new concepts and optimize existing solutions.
+          </>,
+          <>
+            Collaborate with the team to identify software problems and design
+            solutions.
           </>,
         ],
         images: [
           // optional: leave the array empty if you don't want to display images
           {
             src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
+            alt: "Salla Project",
             width: 16,
             height: 9,
           },
         ],
       },
       {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
+        company: "Septeo Tunisie",
+        timeframe: "December 2022 - April 2024",
+        role: "Lead Developer",
         achievements: [
           <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
+            Support architectural reflections and environments, definitions of
+            technical roadmaps, and furnish expertise on development practices.
           </>,
           <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
+            Be a referent on code quality through code reviews, pull requests
+            and increase skills of developers. Control production chain from
+            development to delivery.
+          </>,
+          <>Technologies: Angular, RxJS, NgRx, Microsoft Azure.</>,
+        ],
+        images: [],
+      },
+      {
+        company: "Marven",
+        timeframe: "August 2016 - Present",
+        role: "Founder/Developer",
+        achievements: [
+          <>
+            Founded own brand, launched mobile applications on Google Play with
+            the first app released in the Store for iOS.
+          </>,
+          <>
+            Launched successful recipe website lesavoureux.com with over 60k
+            active users, expanded to offer digital products across MENA region.
+          </>,
+          <>
+            Initiated Marven Academy for live programming courses and provided
+            websites/digital products services in Saudi Arabia and beyond.
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "Smart Team",
+        timeframe: "October 2020 - October 2022",
+        role: "Lead FrontEnd Developer",
+        achievements: [
+          <>
+            Worked on complex business applications using Vue.js, Angular,
+            Ionic, jQuery, Vanilla JavaScript, HTML5, SCSS, Bootstrap.
+          </>,
+          <>
+            Led Totipot project: Design and development of reusable component
+            interfaces, optimization of existing solutions.
+          </>,
+          <>
+            Led AP Works mobile project: Scrum Master responsibilities, daily
+            meetings, Jira management, hybrid mobile application development.
           </>,
         ],
         images: [],
@@ -159,12 +219,19 @@ const about: About = {
     title: "Studies",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: "Indiana University - Kelley School of Business",
+        description: (
+          <>
+            Certificate in Business Studies - Entrepreneurship (July-August
+            2017).
+          </>
+        ),
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "High Institute of Computer Sciences in Tunis",
+        description: (
+          <>Bachelor in Computer Science (September 2012 - June 2015).</>
+        ),
       },
     ],
   },
@@ -173,14 +240,66 @@ const about: About = {
     title: "Technical skills",
     skills: [
       {
-        title: "Figma",
+        title: "Frontend Development",
         description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
+          <>
+            Expert in modern frontend technologies and frameworks with 7+ years
+            of experience in JavaScript, HTML5, CSS3, and responsive design.
+          </>
         ),
         tags: [
           {
-            name: "Figma",
-            icon: "figma",
+            name: "JavaScript",
+            icon: "javascript",
+          },
+          {
+            name: "HTML5",
+            icon: "html5",
+          },
+          {
+            name: "CSS3",
+            icon: "css3",
+          },
+          {
+            name: "Bootstrap",
+            icon: "bootstrap",
+          },
+          {
+            name: "Tailwind CSS",
+            icon: "",
+          },
+        ],
+        // optional: leave the array empty if you don't want to display images
+        images: [],
+      },
+      {
+        title: "Modern Frameworks",
+        description: (
+          <>
+            Proficient in leading frontend frameworks. 5+ years Vue.js/Angular
+            experience, 2+ years React.js development.
+          </>
+        ),
+        tags: [
+          {
+            name: "Vue.js",
+            icon: "vuejs",
+          },
+          {
+            name: "Angular",
+            icon: "angular",
+          },
+          {
+            name: "React.js",
+            icon: "react",
+          },
+          {
+            name: "Next.js",
+            icon: "nextjs",
+          },
+          {
+            name: "Nuxt.js",
+            icon: "",
           },
         ],
         // optional: leave the array empty if you don't want to display images
@@ -191,31 +310,53 @@ const about: About = {
             width: 16,
             height: 9,
           },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
         ],
       },
       {
-        title: "Next.js",
+        title: "Mobile & Hybrid Apps",
         description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
+          <>
+            Experience in cross-platform mobile development using Ionic
+            framework and publishing apps on iOS App Store and Google Play.
+          </>
         ),
         tags: [
           {
-            name: "JavaScript",
-            icon: "javascript",
+            name: "Ionic",
+            icon: "ionic",
           },
           {
-            name: "Next.js",
-            icon: "nextjs",
+            name: "Android Studio",
+            icon: "",
+          },
+        ],
+        // optional: leave the array empty if you don't want to display images
+        images: [],
+      },
+      {
+        title: "Backend & Tools",
+        description: (
+          <>
+            Strong backend knowledge with Ruby on Rails. Version control with
+            Git, containerization with Docker, testing with Cypress.io.
+          </>
+        ),
+        tags: [
+          {
+            name: "Git",
+            icon: "git",
           },
           {
-            name: "Supabase",
-            icon: "supabase",
+            name: "Docker",
+            icon: "docker",
+          },
+          {
+            name: "Cypress.io",
+            icon: "",
+          },
+          {
+            name: "Ruby on Rails",
+            icon: "rails",
           },
         ],
         // optional: leave the array empty if you don't want to display images
@@ -227,6 +368,56 @@ const about: About = {
             height: 9,
           },
         ],
+      },
+      {
+        title: "Design & Productivity",
+        description: (
+          <>
+            Design expertise using Figma and Adobe Photoshop. Experienced in
+            agile methodologies, project management, and team leadership.
+          </>
+        ),
+        tags: [
+          {
+            name: "Figma",
+            icon: "figma",
+          },
+          {
+            name: "Photoshop",
+            icon: "photoshop",
+          },
+        ],
+        // optional: leave the array empty if you don't want to display images
+        images: [
+          {
+            src: "/images/projects/project-01/cover-03.jpg",
+            alt: "Project image",
+            width: 16,
+            height: 9,
+          },
+        ],
+      },
+      {
+        title: "Certifications & Courses",
+        description: (
+          <>
+            AWS Cloud Technical Essentials, Become a Node.js Developer, Become a
+            Vue.js Developer, Ultimate Angular 5 with TypeScript and Bootstrap
+            4, Front End Developer from Udacity, and ES6/EcmaScript courses.
+          </>
+        ),
+        tags: [
+          {
+            name: "AWS",
+            icon: "",
+          },
+          {
+            name: "Udacity",
+            icon: "",
+          },
+        ],
+        // optional: leave the array empty if you don't want to display images
+        images: [],
       },
     ],
   },
