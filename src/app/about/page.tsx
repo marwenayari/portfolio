@@ -5,7 +5,6 @@ import {
   Heading,
   Icon,
   IconButton,
-  Media,
   Tag,
   Text,
   Meta,
@@ -14,6 +13,7 @@ import {
 } from "@once-ui-system/core";
 import { baseURL, about, person, social } from "@/resources";
 import TableOfContents from "@/components/about/TableOfContents";
+import { AboutImageLightboxStrip } from "@/components/about/AboutImageLightboxStrip";
 import styles from "@/components/about/about.module.scss";
 import React from "react";
 
@@ -235,25 +235,10 @@ export default function About() {
                       )}
                     </Column>
                     {experience.images && experience.images.length > 0 && (
-                      <Row fillWidth paddingTop="m" paddingLeft="40" gap="12" wrap>
-                        {experience.images.map((image, index) => (
-                          <Row
-                            key={index}
-                            border="neutral-medium"
-                            radius="m"
-                            minWidth={image.width}
-                            height={image.height}
-                          >
-                            <Media
-                              enlarge
-                              radius="m"
-                              sizes={image.width.toString()}
-                              alt={image.alt}
-                              src={image.src}
-                            />
-                          </Row>
-                        ))}
-                      </Row>
+                      <AboutImageLightboxStrip
+                        variant="experience"
+                        images={experience.images}
+                      />
                     )}
                   </Column>
                 ))}
@@ -310,25 +295,10 @@ export default function About() {
                       </Row>
                     )}
                     {skill.images && skill.images.length > 0 && (
-                      <Row fillWidth paddingTop="m" gap="12" wrap>
-                        {skill.images.map((image, index) => (
-                          <Row
-                            key={index}
-                            border="neutral-medium"
-                            radius="m"
-                            minWidth={image.width}
-                            height={image.height}
-                          >
-                            <Media
-                              enlarge
-                              radius="m"
-                              sizes={image.width.toString()}
-                              alt={image.alt}
-                              src={image.src}
-                            />
-                          </Row>
-                        ))}
-                      </Row>
+                      <AboutImageLightboxStrip
+                        variant="certificates"
+                        images={skill.images}
+                      />
                     )}
                   </Column>
                 ))}
