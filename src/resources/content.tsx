@@ -14,7 +14,7 @@ const person: Person = {
   firstName: "Marwen",
   lastName: "Ayari",
   name: `Marwen Ayari`,
-  role: "Entrepreneur, Senior Lead Developer",
+  role: "Entrepreneur, Senior Software Engineer",
   avatar: "/images/avatar.png",
   email: "marwenayarimail@gmail.com",
   location: "Africa/Tunis", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
@@ -108,7 +108,7 @@ const about: About = {
   },
   calendar: {
     display: true,
-    link: "https://cal.com",
+    link: "https://cal.com/marwenayari/30min?overlayCalendar=true",
   },
   intro: {
     display: true,
@@ -204,24 +204,49 @@ const about: About = {
         ],
       },
       {
-        company: "Marven",
-        timeframe: "August 2016 - Present",
-        role: "Founder/Developer",
+        company: "Sclable",
+        timeframe: "December 2018 - December 2019",
+        role: "Frontend Developer",
         achievements: [
           <>
-            Founded own brand, launched mobile applications on Google Play with
-            the first app released in the Store for iOS.
+            Working full-time on complex business applications using Vue.js,
+            TypeScript, and GraphQL.
           </>,
           <>
-            Launched successful recipe website lesavoureux.com with over 60k
-            active users, expanded to offer digital products across MENA region.
+            Design and develop compelling and reusable component-based user
+            interfaces.
           </>,
           <>
-            Initiated Marven Academy for live programming courses and provided
-            websites/digital products services in Saudi Arabia and beyond.
+            Develop new concepts for user interfaces and optimize existing
+            solutions.
+          </>,
+          <>
+            Collaborate with the app development team—including Product Owner,
+            Team Lead, Quality Assurance, and Senior Full-Stack developers—in
+            identifying software problems, testing methods, and solution design
+            while working in an Agile environment.
           </>,
         ],
-        images: [],
+        images: [
+          {
+            src: "/images/projects/sclable3.png",
+            alt: "Sclable Project",
+            width: 16,
+            height: 10,
+          },
+          {
+            src: "/images/projects/sclable2.png",
+            alt: "Sclable Project",
+            width: 16,
+            height: 10,
+          },
+          {
+            src: "/images/projects/sclable.png",
+            alt: "Sclable Project",
+            width: 16,
+            height: 10,
+          },
+        ],
       },
       {
         company: "Smart Team",
@@ -244,27 +269,21 @@ const about: About = {
         images: [],
       },
       {
-        company: "Sclable",
-        timeframe: "December 2018 - December 2019",
-        role: "Frontend Developer",
+        company: "Marven",
+        timeframe: "August 2016 - Present",
+        role: "Founder/Developer",
         achievements: [
           <>
-            Working full-time on complex business applications using Vue.js,
-            TypeScript, and GraphQL.
+            Founded own brand, launched mobile applications on Google Play with
+            the first app released in the Store for iOS.
           </>,
           <>
-            Design and develop compelling and reusable component-based user
-            interfaces.
+            Launched successful recipe website lesavoureux.com with over 60k
+            active users, expanded to offer digital products across MENA region.
           </>,
           <>
-            Develop new concepts for user interfaces and optimize existing
-            solutions.
-          </>,
-          <>
-            Collaborate with the app development team—including Product Owner,
-            Team Lead, Quality Assurance, and Senior Full-Stack developers—in
-            identifying software problems, testing methods, and solution design
-            while working in an Agile environment.
+            Initiated Marven Academy for live programming courses and provided
+            websites/digital products services in Saudi Arabia and beyond.
           </>,
         ],
         images: [],
