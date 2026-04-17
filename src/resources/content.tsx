@@ -74,14 +74,14 @@ const home: Home = {
     display: true,
     title: (
       <Row gap="12" vertical="center">
-        <strong className="ml-4">Les Avoureux</strong>{" "}
+        <strong className="ml-4">Salla Point (POS)</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
         <Text marginRight="4" onBackground="brand-medium">
           Featured work
         </Text>
       </Row>
     ),
-    href: "/work/les-avoureux-recipe-website",
+    href: "/work/pos",
   },
   subline: (
     <>
@@ -133,7 +133,7 @@ const about: About = {
         achievements: [
           <>
             Working full-time on the famous Salla E-Commerce Platform using
-            Next.js + TypeScript, Vue.js + JavaScript, and Ruby on Rails.
+            Next.js + TypeScript, React.js, React Native, Vue.js + JavaScript, and Ruby on Rails.
           </>,
           <>
             Design and develop compelling and reusable component-based user
@@ -147,11 +147,29 @@ const about: About = {
         images: [
           // optional: leave the array empty if you don't want to display images
           {
-            src: "/images/projects/project-01/1.png",
+            src: "/images/projects/project-01/salla.com_.png",
+            alt: "Salla Project",
+            width: 16,
+            height: 10,
+          },
+          {
+            src: "/images/projects/project-01/salla.com-2.png",
+            alt: "Salla Project",
+            width: 16,
+            height: 10,
+          },
+          {
+            src: "/images/projects/project-01/salla-chat.png",
             alt: "Salla Project",
             width: 16,
             height: 9,
           },
+          {
+            src: "/images/projects/project-01/pos.png",
+            alt: "Salla Project",
+            width: 16,
+            height: 9,
+          }
         ],
       },
       {
@@ -170,7 +188,20 @@ const about: About = {
           </>,
           <>Technologies: Angular, RxJS, NgRx, Microsoft Azure.</>,
         ],
-        images: [],
+        images: [
+          {
+            src: "/images/projects/project-01/www.septeo.com_fr.png",
+            alt: "Septeo Project",
+            width: 16,
+            height: 10,
+          },
+          {
+            src: "/images/projects/project-01/www.septeo.com_fr-3.png",
+            alt: "Septeo Project",
+            width: 16,
+            height: 10,
+          },
+        ],
       },
       {
         company: "Marven",
@@ -208,6 +239,32 @@ const about: About = {
           <>
             Led AP Works mobile project: Scrum Master responsibilities, daily
             meetings, Jira management, hybrid mobile application development.
+          </>,
+        ],
+        images: [],
+      },
+      {
+        company: "Sclable",
+        timeframe: "December 2018 - December 2019",
+        role: "Frontend Developer",
+        achievements: [
+          <>
+            Working full-time on complex business applications using Vue.js,
+            TypeScript, and GraphQL.
+          </>,
+          <>
+            Design and develop compelling and reusable component-based user
+            interfaces.
+          </>,
+          <>
+            Develop new concepts for user interfaces and optimize existing
+            solutions.
+          </>,
+          <>
+            Collaborate with the app development team—including Product Owner,
+            Team Lead, Quality Assurance, and Senior Full-Stack developers—in
+            identifying software problems, testing methods, and solution design
+            while working in an Agile environment.
           </>,
         ],
         images: [],
@@ -303,14 +360,7 @@ const about: About = {
           },
         ],
         // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/2.png",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
         title: "Mobile & Hybrid Apps",
@@ -360,14 +410,7 @@ const about: About = {
           },
         ],
         // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
         title: "Design & Productivity",
@@ -388,14 +431,7 @@ const about: About = {
           },
         ],
         // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/3.png",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        images: [],
       },
       {
         title: "Certifications & Courses",
@@ -415,9 +451,42 @@ const about: About = {
             name: "Udacity",
             icon: "",
           },
+          {
+            name: "Node.js",
+            icon: "",
+          },
+          {
+            name: "Vue.js",
+            icon: "",
+          },
         ],
         // optional: leave the array empty if you don't want to display images
-        images: [],
+        images: [
+          {
+            src: "/images/certifs/aws.png",
+            alt: "AWS",
+            width: 16,
+            height: 9,
+          },
+          {
+            src: "/images/certifs/udacitymena.png",
+            alt: "Udacity",
+            width: 16,
+            height: 9,
+          },
+          {
+            src: "/images/certifs/nodejs.png",
+            alt: "Udacity",
+            width: 16,
+            height: 9,
+          },
+          {
+            src: "/images/certifs/vuejs.png",
+            alt: "Udacity",
+            width: 16,
+            height: 9,
+          },
+        ],
       },
     ],
   },
@@ -426,7 +495,7 @@ const about: About = {
 const blog: Blog = {
   path: "/blog",
   label: "Blog",
-  title: "Writing about some posts...",
+  title: "Writing about my experiences in life and work...",
   description: `Read what ${person.name} has been up to recently`,
   // Create new blog posts by adding a new .mdx file to app/blog/posts
   // All posts will be listed on the /blog route
@@ -469,26 +538,26 @@ const gallery: Gallery = {
       alt: "image",
       orientation: "vertical",
     },
-    {
-      src: "/images/gallery/vertical-2.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-2.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/horizontal-4.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-3.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
+    // {
+    //   src: "/images/gallery/vertical-2.jpg",
+    //   alt: "image",
+    //   orientation: "vertical",
+    // },
+    // {
+    //   src: "/images/gallery/horizontal-2.jpg",
+    //   alt: "image",
+    //   orientation: "horizontal",
+    // },
+    // {
+    //   src: "/images/gallery/horizontal-4.jpg",
+    //   alt: "image",
+    //   orientation: "horizontal",
+    // },
+    // {
+    //   src: "/images/gallery/vertical-3.jpg",
+    //   alt: "image",
+    //   orientation: "vertical",
+    // },
   ],
 };
 
