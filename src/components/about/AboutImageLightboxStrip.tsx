@@ -1,9 +1,11 @@
 "use client";
 
 import { Flex, IconButton, Media, Row } from "@once-ui-system/core";
+import classNames from "classnames";
 import Image from "next/image";
 import { createPortal } from "react-dom";
 import { useCallback, useEffect, useState, type MouseEvent } from "react";
+import styles from "./about.module.scss";
 
 export type AboutStripImage = {
   src: string;
@@ -158,8 +160,8 @@ export function AboutImageLightboxStrip({
             sizes="90vw"
             priority
             style={{
-              width: "90vw",
-              height: "90vh",
+              width: "auto",
+              height: "auto",
               maxWidth: showNav ? "min(86vw, calc(100vw - 96px))" : "90vw",
               maxHeight: "90vh",
               objectFit: "contain",
@@ -192,45 +194,41 @@ export function AboutImageLightboxStrip({
 
   return (
     <>
-      <Row
-        fillWidth
-        paddingTop="m"
-        gap="12"
-        wrap
-        {...(variant === "experience" ? { paddingLeft: "40" } : {})}
+      <div
+        className={classNames(
+          styles.imageStrip,
+          variant === "experience" && styles.imageStripExperience,
+        )}
       >
         {images.map((image, index) => (
           <button
             key={`${image.src}-${index}`}
             type="button"
+            className={styles.thumbButton}
             onClick={() => setActive(index)}
             aria-label={`Open image ${index + 1} of ${images.length}: ${image.alt}`}
-            style={{
-              border: "none",
-              padding: 0,
-              margin: 0,
-              background: "transparent",
-              cursor: "zoom-in",
-              font: "inherit",
-            }}
           >
             <Row
+              className={styles.thumbFrame}
+              fillWidth
               border="neutral-medium"
               radius="m"
-              minWidth={image.width}
-              height={image.height}
+              overflow="hidden"
             >
               <Media
                 enlarge={false}
+                aspectRatio="16 / 9"
+                objectFit="cover"
+                fillWidth
                 radius="m"
-                sizes={image.width.toString()}
+                sizes="(max-width: 768px) 24vw, 20vw"
                 alt={image.alt}
                 src={image.src}
               />
             </Row>
           </button>
         ))}
-      </Row>
+      </div>
       {mounted && typeof document !== "undefined" && lightbox
         ? createPortal(lightbox, document.body)
         : null}
