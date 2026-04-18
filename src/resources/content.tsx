@@ -86,9 +86,7 @@ const home: Home = {
   subline: (
     <>
       I'm Marwen, a dynamic and innovative software development professional
-      with over 9 years of diverse experience, seeking to leverage my expertise
-      in leading development teams and delivering high-quality software
-      solutions. Currently Senior Engineer at Salla E-Commerce Platform and
+      with over 9 years of diverse experience. Currently Senior Engineer at Salla E-Commerce Platform and
       working in parallel as freelancer at my own Marven.
     </>
   ),
