@@ -1,0 +1,61 @@
+Privacy Policy
+
+Last updated: April 24, 2026
+
+1. Introduction
+
+At "Tazakka", we value your privacy. This application is designed to be simple, secure, and focused solely on helping you calculate your Zakat easily and accurately, without collecting or sharing your personal data.
+
+2. Data Collection
+
+We do not collect any personal data from users.
+
+- No name or email address is collected
+- No location tracking is performed
+- No financial or sensitive information is collected
+- No user data is stored on external servers
+
+All data you enter in the app (such as wallets and amounts) remains stored locally on your device only.
+
+3. Advertising
+
+- The app does not contain any advertisements
+- No advertising tracking tools are used
+
+4. In-App Purchases
+
+The app offers optional in-app purchases as a way to support the app.
+
+- These purchases are completely optional
+- They do not unlock any additional features
+- Payments are processed through Apple App Store
+- We do not access or store any payment information
+
+5. Third-Party Services
+
+The app may use limited third-party services such as:
+
+- RevenueCat for managing in-app purchases
+
+These services may process minimal technical data (such as subscription status) but do not share personal user data with us.
+
+6. Data Security
+
+Since we do not collect personal data:
+
+- Your data remains on your device
+- No data is transmitted to external servers
+
+7. Children’s Privacy
+
+The app is not directed to children and does not knowingly collect any data from them.
+
+8. Changes to This Privacy Policy
+
+We may update this Privacy Policy from time to time. Any changes will be posted on this page.
+
+9. Contact Us
+
+If you have any questions regarding this Privacy Policy, you can contact us at:
+
+support@tazakka.app
