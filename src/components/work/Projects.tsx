@@ -1,16 +1,20 @@
-import { getPosts } from "@/utils/utils";
+import { getLocalizedPosts } from "@/utils/utils";
 import { Column } from "@once-ui-system/core";
 import { ProjectCard } from "@/components";
+import { prefixLocalePath } from "@/i18n/config";
+import { getPageStrings } from "@/i18n/pageStrings";
+import type { Locale } from "@/i18n/config";
 
 interface ProjectsProps {
   range?: [number, number?];
   exclude?: string[];
+  locale: Locale;
 }
 
-export function Projects({ range, exclude }: ProjectsProps) {
-  let allProjects = getPosts(["src", "app", "work", "projects"]);
+export function Projects({ range, exclude, locale }: ProjectsProps) {
+  let allProjects = getLocalizedPosts("work", locale);
+  const t = getPageStrings(locale);
 
-  // Exclude by slug (exact match)
   if (exclude && exclude.length > 0) {
     allProjects = allProjects.filter((post) => !exclude.includes(post.slug));
   }
@@ -29,13 +33,15 @@ export function Projects({ range, exclude }: ProjectsProps) {
         <ProjectCard
           priority={index < 2}
           key={post.slug}
-          href={`/work/${post.slug}`}
+          href={prefixLocalePath(locale, `/work/${post.slug}`)}
           images={post.metadata.images}
           title={post.metadata.title}
           description={post.metadata.summary}
           content={post.content}
           avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
           link={post.metadata.link || ""}
+          readCaseStudyLabel={t.readCaseStudy}
+          viewProjectLabel={t.viewProject}
         />
       ))}
     </Column>

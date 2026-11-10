@@ -19,6 +19,7 @@ import {
 } from "@once-ui-system/core";
 import { style, dataStyle } from "../resources";
 import { iconLibrary } from "../resources/icons";
+import { LocaleHtmlAttributes } from "./LocaleHtmlAttributes";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -48,7 +49,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
           }}
         >
           <ToastProvider>
-            <IconProvider icons={iconLibrary}>{children}</IconProvider>
+            <IconProvider icons={iconLibrary}>
+              <LocaleHtmlAttributes />
+              {children}
+            </IconProvider>
           </ToastProvider>
         </DataThemeProvider>
       </ThemeProvider>

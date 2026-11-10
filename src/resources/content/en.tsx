@@ -1,4 +1,4 @@
-import {
+import type {
   About,
   Blog,
   Gallery,
@@ -588,6 +588,17 @@ const gallery: Gallery = {
     //   orientation: "vertical",
     // },
   ],
+};
+
+export const siteBundleEn = {
+  person,
+  social,
+  newsletter,
+  home,
+  about,
+  blog,
+  work,
+  gallery,
 };
 
 export { person, social, newsletter, home, about, blog, work, gallery };

@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import type { Locale } from "@/i18n/config";
 
 type Team = {
   name: string;
@@ -9,7 +10,7 @@ type Team = {
   linkedIn: string;
 };
 
-type Metadata = {
+export type PostMetadata = {
   title: string;
   subtitle?: string;
   publishedAt: string;
@@ -21,25 +22,17 @@ type Metadata = {
   link?: string;
 };
 
-import { notFound } from "next/navigation";
+export type PostData = {
+  metadata: PostMetadata;
+  slug: string;
+  content: string;
+};
 
-function getMDXFiles(dir: string) {
-  if (!fs.existsSync(dir)) {
-    notFound();
-  }
-
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
-}
-
-function readMDXFile(filePath: string) {
-  if (!fs.existsSync(filePath)) {
-    notFound();
-  }
-
+function readMDXFile(filePath: string): { metadata: PostMetadata; content: string } {
   const rawContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(rawContent);
 
-  const metadata: Metadata = {
+  const metadata: PostMetadata = {
     title: data.title || "",
     subtitle: data.subtitle || "",
     publishedAt: data.publishedAt,
@@ -54,21 +47,28 @@ function readMDXFile(filePath: string) {
   return { metadata, content };
 }
 
-function getMDXData(dir: string) {
-  const mdxFiles = getMDXFiles(dir);
-  return mdxFiles.map((file) => {
-    const { metadata, content } = readMDXFile(path.join(dir, file));
-    const slug = path.basename(file, path.extname(file));
+function getMDXData(dir: string): PostData[] {
+  if (!fs.existsSync(dir)) {
+    return [];
+  }
 
-    return {
-      metadata,
-      slug,
-      content,
-    };
+  const mdxFiles = fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+
+  return mdxFiles.map((file) => {
+    const filePath = path.join(dir, file);
+    const { metadata, content } = readMDXFile(filePath);
+    const slug = path.basename(file, path.extname(file));
+    return { metadata, content, slug };
   });
 }
 
-export function getPosts(customPath = ["", "", "", ""]) {
-  const postsDir = path.join(process.cwd(), ...customPath);
+export function getLocalizedPosts(kind: "blog" | "work", locale: Locale): PostData[] {
+  const postsDir = path.join(process.cwd(), "src", "content", kind, locale);
   return getMDXData(postsDir);
+}
+
+export function getSharedSlugs(kind: "blog" | "work"): string[] {
+  const en = new Set(getLocalizedPosts(kind, "en").map((p) => p.slug));
+  const ar = new Set(getLocalizedPosts(kind, "ar").map((p) => p.slug));
+  return [...en].filter((slug) => ar.has(slug));
 }

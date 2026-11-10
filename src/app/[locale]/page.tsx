@@ -11,34 +11,52 @@ import {
   Meta,
   Line,
 } from "@once-ui-system/core";
-import { home, about, person, baseURL, routes } from "@/resources";
+import { baseURL, getSiteContent, routes } from "@/resources";
 import { Mailchimp } from "@/components";
 import { Projects } from "@/components/work/Projects";
 import { Posts } from "@/components/blog/Posts";
+import { defaultLocale, isLocale, prefixLocalePath, type Locale } from "@/i18n/config";
+import { getPageStrings } from "@/i18n/pageStrings";
 
-export async function generateMetadata() {
+type PageProps = { params: Promise<{ locale: string }> };
+
+function resolveLocale(raw: string): Locale {
+  return isLocale(raw) ? raw : defaultLocale;
+}
+
+export async function generateMetadata({ params }: PageProps) {
+  const { locale: raw } = await params;
+  const locale = resolveLocale(raw);
+  const { home } = getSiteContent(locale);
+
   return Meta.generate({
     title: home.title,
     description: home.description,
     baseURL: baseURL,
-    path: home.path,
+    path: prefixLocalePath(locale, home.path),
     image: home.image,
   });
 }
 
-export default function Home() {
+export default async function Home({ params }: PageProps) {
+  const { locale: raw } = await params;
+  const locale = resolveLocale(raw);
+  const { home, about, person } = getSiteContent(locale);
+  const t = getPageStrings(locale);
+  const p = (path: string) => prefixLocalePath(locale, path);
+
   return (
     <Column maxWidth="m" gap="xl" paddingY="12" horizontal="center">
       <Schema
         as="webPage"
         baseURL={baseURL}
-        path={home.path}
+        path={p(home.path)}
         title={home.title}
         description={home.description}
         image={`/api/og/generate?title=${encodeURIComponent(home.title)}`}
         author={{
           name: person.name,
-          url: `${baseURL}${about.path}`,
+          url: `${baseURL}${p(about.path)}`,
           image: `${baseURL}${person.avatar}`,
         }}
       />
@@ -59,18 +77,13 @@ export default function Home() {
                 onBackground="neutral-strong"
                 textVariant="label-default-s"
                 arrow={false}
-                href={home.featured.href}
+                href={p(home.featured.href)}
               >
                 <Row paddingY="2">{home.featured.title}</Row>
               </Badge>
             </RevealFx>
           )}
-          <RevealFx
-            translateY="4"
-            fillWidth
-            horizontal="center"
-            paddingBottom="16"
-          >
+          <RevealFx translateY="4" fillWidth horizontal="center" paddingBottom="16">
             <Heading wrap="balance" variant="display-strong-l">
               {home.headline}
             </Heading>
@@ -82,24 +95,15 @@ export default function Home() {
             horizontal="center"
             paddingBottom="32"
           >
-            <Text
-              wrap="balance"
-              onBackground="neutral-weak"
-              variant="heading-default-xl"
-            >
+            <Text wrap="balance" onBackground="neutral-weak" variant="heading-default-xl">
               {home.subline}
             </Text>
           </RevealFx>
-          <RevealFx
-            paddingTop="12"
-            delay={0.4}
-            horizontal="center"
-            paddingLeft="12"
-          >
+          <RevealFx paddingTop="12" delay={0.4} horizontal="center" paddingLeft="12">
             <Button
               id="about"
               data-border="rounded"
-              href={about.path}
+              href={p(about.path)}
               variant="secondary"
               size="m"
               weight="default"
@@ -121,7 +125,7 @@ export default function Home() {
         </Column>
       </Column>
       <RevealFx translateY="16" delay={0.6}>
-        <Projects range={[3, 3]} />
+        <Projects range={[3, 3]} locale={locale} />
       </RevealFx>
       {routes["/blog"] && (
         <Column fillWidth gap="24" marginBottom="l">
@@ -131,11 +135,11 @@ export default function Home() {
           <Row fillWidth gap="24" marginTop="40" s={{ direction: "column" }}>
             <Row flex={1} paddingLeft="l" paddingTop="24">
               <Heading as="h2" variant="display-strong-xs" wrap="balance">
-                Latest from the blog
+                {t.latestFromBlog}
               </Heading>
             </Row>
             <Row flex={3} paddingX="20">
-              <Posts range={[1, 2]} columns="2" />
+              <Posts range={[1, 2]} columns="2" locale={locale} />
             </Row>
           </Row>
           <Row fillWidth paddingLeft="64" horizontal="end">
@@ -143,7 +147,6 @@ export default function Home() {
           </Row>
         </Column>
       )}
-      {/* <Projects range={[2]} /> */}
       <Mailchimp />
     </Column>
   );

@@ -2,20 +2,33 @@
 
 import { Card, Column, Media, Row, Avatar, Text } from "@once-ui-system/core";
 import { formatDate } from "@/utils/formatDate";
-import { person } from "@/resources";
+import { getSiteContent } from "@/resources";
+import { prefixLocalePath } from "@/i18n/config";
+import type { Locale } from "@/i18n/config";
 
 interface PostProps {
-  post: any;
+  post: {
+    slug: string;
+    metadata: {
+      image?: string;
+      title: string;
+      publishedAt: string;
+      tag?: string;
+    };
+  };
   thumbnail: boolean;
   direction?: "row" | "column";
+  locale: Locale;
 }
 
-export default function Post({ post, thumbnail, direction }: PostProps) {
+export default function Post({ post, thumbnail, direction, locale }: PostProps) {
+  const { person } = getSiteContent(locale);
+
   return (
     <Card
       fillWidth
       key={post.slug}
-      href={`/blog/${post.slug}`}
+      href={prefixLocalePath(locale, `/blog/${post.slug}`)}
       transition="micro-medium"
       direction={direction}
       border="transparent"
@@ -45,7 +58,7 @@ export default function Post({ post, thumbnail, direction }: PostProps) {
               <Text variant="label-default-s">{person.name}</Text>
             </Row>
             <Text variant="body-default-xs" onBackground="neutral-weak">
-              {formatDate(post.metadata.publishedAt, false)}
+              {formatDate(post.metadata.publishedAt, locale, false)}
             </Text>
           </Row>
           <Text variant="heading-strong-l" wrap="balance">

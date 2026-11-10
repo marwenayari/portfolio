@@ -5,9 +5,17 @@ import { usePathname } from "next/navigation";
 import { routes, protectedRoutes } from "@/resources";
 import { Flex, Spinner, Button, Heading, Column, PasswordInput } from "@once-ui-system/core";
 import NotFound from "@/app/not-found";
+import { defaultLocale, isLocale, stripLocalePathname, type Locale } from "@/i18n/config";
+import { getPageStrings } from "@/i18n/pageStrings";
 
 interface RouteGuardProps {
   children: React.ReactNode;
+}
+
+function localeFromPathname(pathname: string | null): Locale {
+  if (!pathname) return defaultLocale;
+  const first = pathname.split("/").filter(Boolean)[0];
+  return first && isLocale(first) ? first : defaultLocale;
 }
 
 const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
@@ -26,16 +34,16 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
       setIsPasswordRequired(false);
       setIsAuthenticated(false);
 
-      const checkRouteEnabled = () => {
-        if (!pathname) return false;
+      const normalizedPath = stripLocalePathname(pathname ?? "/");
 
-        if (pathname in routes) {
-          return routes[pathname as keyof typeof routes];
+      const checkRouteEnabled = () => {
+        if (normalizedPath in routes) {
+          return routes[normalizedPath as keyof typeof routes];
         }
 
         const dynamicRoutes = ["/blog", "/work"] as const;
         for (const route of dynamicRoutes) {
-          if (pathname?.startsWith(route) && routes[route]) {
+          if (normalizedPath.startsWith(route) && routes[route]) {
             return true;
           }
         }
@@ -46,7 +54,7 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
       const routeEnabled = checkRouteEnabled();
       setIsRouteEnabled(routeEnabled);
 
-      if (protectedRoutes[pathname as keyof typeof protectedRoutes]) {
+      if (protectedRoutes[normalizedPath as keyof typeof protectedRoutes]) {
         setIsPasswordRequired(true);
 
         const response = await fetch("/api/check-auth");
@@ -68,11 +76,14 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
       body: JSON.stringify({ password }),
     });
 
+    const locale = localeFromPathname(pathname ?? null);
+    const t = getPageStrings(locale);
+
     if (response.ok) {
       setIsAuthenticated(true);
       setError(undefined);
     } else {
-      setError("Incorrect password");
+      setError(t.incorrectPassword);
     }
   };
 
@@ -88,21 +99,24 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
     return <NotFound />;
   }
 
+  const locale = localeFromPathname(pathname ?? null);
+  const t = getPageStrings(locale);
+
   if (isPasswordRequired && !isAuthenticated) {
     return (
       <Column paddingY="128" maxWidth={24} gap="24" center>
         <Heading align="center" wrap="balance">
-          This page is password protected
+          {t.passwordProtected}
         </Heading>
         <Column fillWidth gap="8" horizontal="center">
           <PasswordInput
             id="password"
-            label="Password"
+            label={t.passwordLabel}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             errorMessage={error}
           />
-          <Button onClick={handlePasswordSubmit}>Submit</Button>
+          <Button onClick={handlePasswordSubmit}>{t.submit}</Button>
         </Column>
       </Column>
     );

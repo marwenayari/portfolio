@@ -35,14 +35,16 @@ src/resources/once-ui.config.js
 **5. Edit content**
 
 ```
-src/resources/content.js
+src/resources/content/en.tsx and src/resources/content/ar.tsx
 ```
 
 **6. Create blog posts / projects**
 
 ```
-Add a new .mdx file to src/app/blog/posts or src/app/work/projects
+Add matching .mdx files under src/content/blog/en and src/content/blog/ar (same filename per slug), and under src/content/work/en and src/content/work/ar.
 ```
+
+URLs are locale-prefixed (`/en/...`, `/ar/...`); the middleware redirects bare paths to `/en/...`.
 
 Magic Portfolio was built with [Once UI](https://once-ui.com) for [Next.js](https://nextjs.org). It requires Node.js v18.17+.
 

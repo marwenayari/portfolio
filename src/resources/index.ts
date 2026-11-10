@@ -8,7 +8,9 @@ export {
   blog,
   work,
   gallery,
-} from "./content";
+} from "./content/en";
+
+export { getSiteContent, type SiteContent } from "./content/site";
 
 export {
   display,
